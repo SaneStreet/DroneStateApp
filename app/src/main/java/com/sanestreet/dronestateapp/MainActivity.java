@@ -24,6 +24,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
+import model.state.Landing;
+import model.state.State;
+
 public class MainActivity extends AppCompatActivity {
 
     String defaultState = "Inactive";
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> arrayList;
     TextView textView;
     Date currentTime;
+    State state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     private void changeToInactive(){
@@ -106,8 +112,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void changeToLand(){
-        final String newState = "Lander";
+    public void changeToLand(){
+        state.setState(Landing.instance());
+        final String newState = state.getCurrentState();
         Button button = findViewById(R.id.buttonLand);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
